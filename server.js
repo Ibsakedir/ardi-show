@@ -6,6 +6,7 @@ app.use(cors())
 
 
 var mysql = require("mysql")
+const { send } = require("node:process")
 var connection = mysql.createConnection({
     host: "localhost",
     user: "root",
@@ -26,6 +27,10 @@ connection.connect(err=>{
         // })
 
     }
+})
+
+app.get("/", (req, res)=>{
+    sendFile("index.html", {path: __dirname})
 })
 
 app.post("/users", (req, res)=>{
